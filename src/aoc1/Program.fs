@@ -24,4 +24,5 @@ let maxcalories = calories |> List.map (fun l -> l |> List.sum)
 [<EntryPoint>]
 let main argv =
     printfn "max: %i" (maxcalories |> List.max)
+    printfn "sum of top 3: %i" (maxcalories |> List.sortDescending |> fun l -> l[..2] |> List.sum)
     0
