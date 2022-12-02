@@ -2,9 +2,7 @@
 open System.IO
 
 
-let text = File.ReadAllText(@"/home/emile/recreational_programming/aoc22/src/aoc1/input")
-
-let lines = text.Split("\n")
+let lines = File.ReadAllLines(@"/home/emile/recreational_programming/aoc22/src/aoc1/input")
 
 // fold the array into a list<list<string>>, where each list<string> correspondes to an elve
 let elves =
