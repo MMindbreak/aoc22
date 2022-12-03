@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "qfyE6LD0D/TSZWqYI/Nk0f6AfYul33PHo+8c/n/6yRdWd9DgHlHc/poO8iFmR4fmVlH+/H3rrjRnkB2eXjABpw==",
+  "success": true,
+  "projectFilePath": "/home/emile/recreational_programming/aoc22/src/aoc2/aoc2.fsproj",
+  "expectedPackageFiles": [
+    "/home/emile/.nuget/packages/fsharp.core/7.0.0/fsharp.core.7.0.0.nupkg.sha512",
+    "/home/emile/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.0/microsoft.aspnetcore.app.ref.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
