@@ -19,15 +19,10 @@ let convertToValue (b:byte) =
 
 let splitRucksackIntoCompartements (rucksack: array<byte>) =
     let l = rucksack.Length / 2
-    rucksack[..l-1], rucksack[l..]
+    [|rucksack[..l-1]; rucksack[l..]|]
 
-let findCommonItem (c1: array<byte>, c2: array<byte>) =
-    let s1 = Set.ofArray c1
-    let s2 = Set.ofArray c2
-
-    Set.intersect s1 s2 |> Set.toArray |> fun a -> a[0]
     
-let findCommonItem3(group: byte array[]):byte =
+let findCommonItem(group: byte array[]):byte =
     let sets = group |> Array.map (fun a -> a |> Set.ofArray) 
     Set.intersectMany sets |> Set.toArray |> fun a -> a[0]
 
@@ -45,7 +40,7 @@ let main argv =
 
     let commonSum = (0, groups) ||> Array.fold (fun acc g ->
                                                 acc  + (g
-                                                        |> findCommonItem3
+                                                        |> findCommonItem
                                                         |> convertToValue))
                                                 
     printfn "Sum is %i" sum
