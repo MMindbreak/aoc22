@@ -2,7 +2,7 @@
 open System.Text
 open System.IO
 
-let text = File.ReadAllText("/home/emile/programming/aoc22/src/aoc5/input")
+let text = File.ReadAllText("/home/emile/programming/aoc22/src/aoc5/test_input")
 
 let split = text.Split("\n\n")
 
@@ -14,8 +14,8 @@ type Stack = list<string> * int
 
 let buildStacks (crates: string) =
     crates.Split("\n")
+    |> fun a -> a[..a.Length-2]
     |> Array.map (fun r -> Encoding.ASCII.GetBytes r |> Array.chunkBySize 4)
-
 
 let rows = buildStacks crates
 
@@ -34,7 +34,7 @@ let stacks =
         (acc, row)
         ||> Array.map2 (fun a r ->
             if not (String.IsNullOrWhiteSpace(Encoding.ASCII.GetString(r))) then
-                Array.concat [ a; r ]
+                        Array.concat [ a; r ]
             else
                 a))
 
@@ -58,8 +58,8 @@ let moveCrate fromStack toStack (crateStacks: string[][]) =
 
 
 let moveCrates fromStack toStack amount (crateStacks: string[][]) =
-    crateStacks[toStack] <- Array.concat [ [| crateStacks[fromStack][0] |] ;crateStacks[toStack]]
-    crateStacks[fromStack] <- crateStacks[fromStack][1..]
+    crateStacks[toStack] <- Array.concat [ crateStacks[fromStack][..amount - 1] ;crateStacks[toStack]]
+    crateStacks[fromStack] <- crateStacks[fromStack][amount..]
     crateStacks
     
 let rec applyProcedure (p: Procedure) (stacks: string[][]) =
@@ -75,8 +75,14 @@ let printit (crateStacks: string[][]) =
             Console.Write(c)
         Console.Write("\n")
 
+
+printit crateStacks
 for proc in procedures.Split("\n") do
-    applyProcedure (parseProcedure proc) crateStacks |> ignore
+    let procedure = parseProcedure proc
+    Console.WriteLine("====")
+    moveCrates procedure.From procedure.To procedure.Amount crateStacks |> ignore
+    printit crateStacks
+Console.WriteLine("====")
 
 for stack in crateStacks do
     printfn "%s" stack[0]
