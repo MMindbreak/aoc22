@@ -2,7 +2,7 @@
 open System.Text
 open System.IO
 
-let text = File.ReadAllText("/home/emile/programming/aoc22/src/aoc5/test_input")
+let text = File.ReadAllText("/home/emile/programming/aoc22/src/aoc5/input")
 
 let split = text.Split("\n\n")
 
@@ -79,9 +79,11 @@ let printit (crateStacks: string[][]) =
 printit crateStacks
 for proc in procedures.Split("\n") do
     let procedure = parseProcedure proc
-    Console.WriteLine("====")
     moveCrates procedure.From procedure.To procedure.Amount crateStacks |> ignore
     printit crateStacks
+    Console.WriteLine("====")
+
+
 Console.WriteLine("====")
 
 for stack in crateStacks do
