@@ -40,7 +40,7 @@ let main arv =
         |> (fun s ->
             Console.WriteLine("====")
             (s, List.rev rows)
-            ||> List.fold (fun acc row -> countVisible grid cols acc row))
+            ||> List.fold (fun acc row -> countVisible grid (List.rev cols) acc row))
         |> (fun s ->
             Console.WriteLine("====")
             (s, List.rev cols)
